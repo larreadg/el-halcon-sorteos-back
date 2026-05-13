@@ -15,6 +15,17 @@ foreach (file(APP_ROOT . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
 }
 
 require_once APP_ROOT . '/flight/autoload.php';
+
+spl_autoload_register(function (string $class): void {
+    if (!str_starts_with($class, 'Mike42\\Escpos\\')) {
+        return;
+    }
+    $relative = str_replace(['Mike42\\Escpos\\', '\\'], ['', '/'], $class);
+    $file = APP_ROOT . '/escpos/' . $relative . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
 require_once APP_ROOT . '/app/core/ApiResponse.php';
 require_once APP_ROOT . '/app/config/app.php';
 require_once APP_ROOT . '/app/config/database.php';

@@ -33,4 +33,4 @@ CREATE TABLE IF NOT EXISTS ciudad (
 
 INSERT OR IGNORE INTO parametro (clave, valor, tipo) VALUES
     ('cupones_por_regla', '1',   'integer'),
-    ('monto_por_regla',   '20000', 'real');
+    ('monto_por_regla',   '5000', 'real');
